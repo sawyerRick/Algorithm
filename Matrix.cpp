@@ -20,14 +20,15 @@ int main()
 	elemtype ** Matrix1 = new int *[n];
 	elemtype ** Matrix2 = new int *[n];
 	elemtype ** returnMatrix;
+	srand((unsigned)time(NULL));
 	InitMatrix(Matrix1, n, m);
 	InitMatrix(Matrix2, n, m);
 	DisplayMatrix(Matrix1, n, m);
 	DisplayMatrix(Matrix2, n, m);
 	//Transpose(Matrix1, n, m, returnMatrix);
 	//DisplayMatrix(returnMatrix, m, n);
-	//MatrixAdd(Matrix1, Matrix2, n, m);
-	//DisplayMatrix(returnMatrix, n, m);
+	MatrixSub(Matrix1, Matrix2, n, m);
+	DisplayMatrix(Matrix1, n, m);
 
 	delete []Matrix1;
 	delete []Matrix2;
@@ -38,7 +39,7 @@ int main()
 
 void InitMatrix(elemtype **& Matrix, int n, int m)
 {
-	srand((unsigned)time(NULL));
+	
 	for (int i = 0; i < n; i ++)
 	{
 		Matrix[i] = new int[m];
@@ -46,6 +47,7 @@ void InitMatrix(elemtype **& Matrix, int n, int m)
 
 	for (int i = 0; i < n; i++)
 	{
+		
 		for (int j = 0; j < m; j++)
 		{
 			Matrix[i][j] = rand() % 10;
@@ -90,6 +92,17 @@ void MatrixAdd(elemtype **& Matrix1, elemtype **& Matrix2, int n, int m)
 		for (int j = 0; j < m; j++)
 		{
 			Matrix1[i][j] += Matrix2[i][j];
+		}
+	}
+}
+
+void MatrixSub(elemtype **& Matrix1, elemtype **& Matrix2, int n, int m)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			Matrix1[i][j] -= Matrix2[i][j];
 		}
 	}
 }
